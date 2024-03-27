@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .models import Room,Message
 # Create your views here.
 
@@ -26,3 +26,13 @@ def checkview(request):
         new_room = Room.objects.create(name=room)
         new_room.save()
         return redirect('/'+room+'/?username='+username)
+def send(request):
+    message=request.POST['message']
+    username=request.POST['username']
+    room_id=request.POST['room_id']
+
+    new_message=Message.objects.create(
+        value=Message,User=username,room=room_id
+    )
+    new_message.save()
+    return HttpResponse("Hi, Message Sent Successfully.")

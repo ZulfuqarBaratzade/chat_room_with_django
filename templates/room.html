@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        #message-container {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        #message-container p {
+            margin: 5px 0;
+        }
+        #input-container {
+            display: flex;
+        }
+        #message-input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #send-btn {
+            padding: 5px 10px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="message-container"></div>
+        <div id="input-container">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const messageContainer = document.getElementById('message-container');
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-btn');
+
+            // Function to add a new message to the chat container
+            function addMessage(message) {
+                const messageElement = document.createElement('p');
+                messageElement.textContent = message;
+                messageContainer.appendChild(messageElement);
+                messageContainer.scrollTop = messageContainer.scrollHeight; // Auto-scroll to the bottom
+            }
+
+            // Event listener for the send button
+            sendButton.addEventListener('click', function() {
+                const message = messageInput.value.trim();
+                if (message !== '') {
+                    addMessage(message);
+                    messageInput.value = ''; // Clear the input field after sending
+                }
+            });
+
+            // Simulate receiving a message (just for demonstration)
+            // In a real chat room, messages would be received from a server
+            // You can remove this part and replace it with actual message receiving logic
+            setTimeout(function() {
+                addMessage('Welcome to the chat room!');
+            }, 500);
+
+            setTimeout(function() {
+                addMessage('Feel free to start chatting!');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

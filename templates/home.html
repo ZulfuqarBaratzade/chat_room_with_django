@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #home-container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"] {
+            width: calc(100% - 10px);
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="home-container">
+        <h2>Welcome to the Chat Room!</h2>
+        <form id="user-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your username..." required>
+            <label for="chatroom">Choose a Chat Room:</label>
+            <select id="chatroom" required>
+                <option value="general">General</option>
+                <option value="random">Random</option>
+                <option value="tech">Tech</option>
+                <!-- Add more chat rooms as needed -->
+            </select>
+            <button type="submit">Join Chat</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const userForm = document.getElementById('user-form');
+
+            // Event listener for the form submission
+            userForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+
+                // Get the username and selected chat room
+                const username = document.getElementById('username').value.trim();
+                const chatroom = document.getElementById('chatroom').value;
+
+                // Redirect to the chat room page with the username and chat room as URL parameters
+                window.location.href = `chatroom.html?username=${encodeURIComponent(username)}&chatroom=${encodeURIComponent(chatroom)}`;
+            });
+        });
+    </script>
+</body>
+</html>

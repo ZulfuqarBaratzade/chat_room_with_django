@@ -6,8 +6,15 @@ def home(request):
     return render(request,"home.html")
 
 
-def room(request):
-    return render(request,"room.html")
+def room(request,room):
+    username=request.GET.get("username")
+    room_details=Room.objects.get(name=room)
+    context={
+        "username":username,
+        "room":room,
+        "room_details":room_details,
+    }
+    return render(request,"room.html",context)
 
 def checkview(request):
     room = request.POST['room_name']

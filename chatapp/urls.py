@@ -1,8 +1,7 @@
 from django.urls import path
-from chatapp.views import home,checkview
-
+from . import views
 urlpatterns = [
-    path('',home,name="home"),
-    path("<str:room>/",home,name="home"),
-    path("checkview",checkview,name="checkview")
+    path("",views.home,name="home"),
+    path("<str:room>/", views.room, name="home"),
+    path("checkview", views.checkview,name="checkview")
 ]
